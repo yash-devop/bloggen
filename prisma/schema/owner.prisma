@@ -1,0 +1,6 @@
+model Owner {
+  id             String  @id @default(cuid())
+  installationId String  @unique
+  owner          String  @unique
+  repo           String?
+}

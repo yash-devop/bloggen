@@ -1,0 +1,6 @@
+model Blog {
+  id       String @id @default(cuid())
+  repoName String
+  blogName String
+  owner    String
+}
