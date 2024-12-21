@@ -1,0 +1,2 @@
+-- AlterTable
+ALTER TABLE "Owner" ALTER COLUMN "repo" DROP NOT NULL;
