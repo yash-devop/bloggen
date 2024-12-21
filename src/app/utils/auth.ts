@@ -20,7 +20,6 @@ export const AUTH_OPTIONS = {
   },
   callbacks: {
     async jwt({ token, user,profile,session,account}) {
-      console.log('profile in jwt: ', profile);
       if (user) {
         return {
           ...token,
@@ -32,7 +31,6 @@ export const AUTH_OPTIONS = {
       return token;
     },
     session: async ({ session, token, user }) => {
-      console.log(session,token,user);
       return {
         ...session,
         user: {
