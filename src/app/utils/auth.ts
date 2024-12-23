@@ -5,6 +5,7 @@ import GitHub from "next-auth/providers/github";
 import { NextAuthConfig } from "next-auth";
 
 export const AUTH_OPTIONS = {
+  trustHost: true,
   providers: [
     GitHub({
       allowDangerousEmailAccountLinking: true,
