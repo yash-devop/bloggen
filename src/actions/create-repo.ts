@@ -2,7 +2,6 @@
 
 import prisma from "@/app/lib/prisma";
 import { auth } from "@/app/utils/auth";
-import { redirect } from "next/navigation";
 
 // Server action to handle form submission
 
@@ -14,20 +13,30 @@ export type State =
       errors?: { path: string; message: string }[];
     }
   | null;
-type Blog = {
-  blogName: string;
-  repoName: string;
-};
+
 export async function createRepo(
   previousState: State | null,
   formData: FormData
 ): Promise<State> {
-  const blogNameTrimmed = formData.get("blogName")?.toString().toLowerCase()!
-  const repoNameTrimmed = formData.get("repoName")?.toString().toLowerCase().replace(/\./g, "-").trim()!
+  const blogName = formData.get("blogName")?.toString();
+  const repoName = formData.get("repoName")?.toString();
 
+  if (!blogName || !repoName) {
+    return {
+      status: "error",
+      message: "Both Blog Name and Repository Name are required.",
+    };
+  }
+  const blogNameTrimmed = blogName.toLowerCase();
+  const repoNameTrimmed = repoName.toLowerCase().replace(/\./g, "-").trim();
 
-  console.log("Mutation :", {blogNameTrimmed,repoNameTrimmed});
   const session = await auth();
+  if (!session) {
+    return {
+      status: "error",
+      message: "Please Login.",
+    };
+  }
   try {
     const existing_blog = await prisma.blog.findFirst({
       where: {
@@ -41,21 +50,13 @@ export async function createRepo(
         data: {
           blogName: blogNameTrimmed,
           repoName: repoNameTrimmed,
-          owner:  session?.user.username!
+          owner: session.user.username,
         },
       });
-      // await prisma.owner.update({
-      //   data:{
-      //     repo: repoNameTrimmed
-      //   },
-      //   where:{
-      //     owner: session?.user.username
-      //   }
-      // })
       return {
         status: "success",
         message: "Blog created bro.",
-        redirectUrl: `/dashboard/blog/${new_blog.id}`,      // redirect to that blog using id.
+        redirectUrl: `/dashboard/blog/${new_blog.id}`, // redirect to that blog using id.
       };
     }
     return {
@@ -66,7 +67,8 @@ export async function createRepo(
     console.log("Error: ", e);
     return {
       status: "error",
-      message: "Something went wronge while creating this blog , Please try later."
+      message:
+        "Something went wronge while creating this blog , Please try later.",
     };
   }
 }

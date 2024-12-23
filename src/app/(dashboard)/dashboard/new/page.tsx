@@ -3,36 +3,19 @@ import githubClient from "../../../lib/octokit";
 import prisma from "../../../lib/prisma";
 import { auth } from "../../../utils/auth";
 import CreateBlogForm from "@/app/components/CreateBlogForm";
-export const fetchUserWithRetry = async (installationId: string) => {
-  let RETRIES = 3;
-  const RETRY_INTERVAL = 500;
-
-  for (let attempt = 0; attempt < RETRIES; attempt++) {
-    const user = await prisma.owner.findUnique({
-      where: { installationId },
-    });
-
-    if (user) {
-      return user;
-    }
-
-    await new Promise((resolve) => setTimeout(resolve, RETRY_INTERVAL));
-  }
-
-  return null;
-};
+import { fetchUserWithRetry } from "@/app/utils/fetchWithRetry";
 
 export default async function DashboardPage({
   searchParams,
 }: {
-  searchParams?: Promise<{ installation_id: string }>;
+  searchParams?: Promise<{ installation_id?: string }>;
 }) {
   const session = await auth();
   let installation_id = (await searchParams)?.installation_id;
   if (!installation_id) {
     const owner = await prisma.owner.findFirst({
       where: {
-        owner: session?.user.username!,
+        owner: session?.user.username,
       },
     });
 
@@ -40,7 +23,7 @@ export default async function DashboardPage({
       notFound();
     }
 
-    installation_id = owner?.installationId!;
+    installation_id = owner?.installationId;
   }
 
   const user = await fetchUserWithRetry(installation_id);
@@ -57,7 +40,7 @@ export default async function DashboardPage({
     );
 
     const repos_list = await octokit.rest.repos.listForUser({
-      username: user?.owner!,
+      username: user.owner
     });
 
     repos_names = repos_list.data.map((repo) => repo.name);
@@ -67,7 +50,7 @@ export default async function DashboardPage({
   }
   return (
     <>
-      <p>I'm Dashboard page with installation id: {user?.installationId}</p>
+      <p>Im Dashboard page with installation id: {user?.installationId}</p>
 
       <CreateBlogForm repos={repos_names} />
     </>

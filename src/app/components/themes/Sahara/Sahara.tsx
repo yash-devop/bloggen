@@ -1,37 +1,37 @@
-import Link from "next/link"
+// import Link from "next/link"
 import React from "react"
-import { Badge } from "../../ui/badge"
+// import { Badge } from "../../ui/badge"
 
 export default function Sahara({
     children
 }:{
     children: React.ReactNode
 }){
-    const blogData = [
-        {
-            id: 1,
-            name: "Calling Server Action in Dynamic Route Resets globalThis, but Not in Static Route",
-            description: "Is this happening on only because I'm on nextjs 14 When trying to get image from outside source I'm facing this issue Error: Invalid src prop (https://image-link) on next/image, hostname imge-link is not configured under images in your next.config.js",
-            date: "2024-04-12",
-            href: "/",
-            open: false
-        },
-        {   id: 2,
-            name: "In Next.js 15 with Turbopack mode, the IIFE is not executing as expected, resulting in a strange bug",
-            description: "Is this happening on only because I'm on nextjs 14 When trying to get image from outside source I'm facing this issue Error: Invalid src prop (https://image-link) on next/image, hostname imge-link is not configured under images in your next.config.js",
-            date: "2024-04-12",
-            href: "/",
-            open: true
+    // const blogData = [
+    //     {
+    //         id: 1,
+    //         name: "Calling Server Action in Dynamic Route Resets globalThis, but Not in Static Route",
+    //         description: "Is this happening on only because I'm on nextjs 14 When trying to get image from outside source I'm facing this issue Error: Invalid src prop (https://image-link) on next/image, hostname imge-link is not configured under images in your next.config.js",
+    //         date: "2024-04-12",
+    //         href: "/",
+    //         open: false
+    //     },
+    //     {   id: 2,
+    //         name: "In Next.js 15 with Turbopack mode, the IIFE is not executing as expected, resulting in a strange bug",
+    //         description: "Is this happening on only because I'm on nextjs 14 When trying to get image from outside source I'm facing this issue Error: Invalid src prop (https://image-link) on next/image, hostname imge-link is not configured under images in your next.config.js",
+    //         date: "2024-04-12",
+    //         href: "/",
+    //         open: true
 
-        },
-        {
-            id: 3,
-            date: "2024-04-12",
-            name: "Docs: Unnecessary fiels that causes error on next/image Un-configured Host",
-            href: "/",
-            open: true
-        }
-    ]
+    //     },
+    //     {
+    //         id: 3,
+    //         date: "2024-04-12",
+    //         name: "Docs: Unnecessary fiels that causes error on next/image Un-configured Host",
+    //         href: "/",
+    //         open: true
+    //     }
+    // ]
     return (
         <>
             <div className="text-white bg-saharaBg min-h-screen tracking-[-0.6px] selection:text-neutral-800 selection:bg-neutral-500">

@@ -19,7 +19,7 @@ export const AUTH_OPTIONS = {
     error: "/signin",
   },
   callbacks: {
-    async jwt({ token, user,profile,session,account}) {
+    async jwt({ token, user,profile}) {
       if (user) {
         return {
           ...token,
@@ -30,7 +30,7 @@ export const AUTH_OPTIONS = {
       }
       return token;
     },
-    session: async ({ session, token, user }) => {
+    session: async ({ session, token}) => {
       return {
         ...session,
         user: {
@@ -44,7 +44,7 @@ export const AUTH_OPTIONS = {
       // Logged in users are authenticated, otherwise redirect to login page
       return !!auth;
     },
-    async signIn({ user, account, profile,credentials }) {
+    async signIn({ user,profile }) {
       // Check if the user exists in the database
       const existingUser = await prisma.user.findUnique({
         where: { email: user.email! },
@@ -64,7 +64,7 @@ export const AUTH_OPTIONS = {
       if (!existingUser) {
         console.log('NOT EXISTING USER... Will create a new one for u with team.');
         // Create a new user if they don't exist
-        const newUser = await prisma.user.create({
+        await prisma.user.create({
           data: {
             email: user.email!,
             name: user.name!,

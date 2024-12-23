@@ -1,6 +1,4 @@
-import Neutral from "@/app/components/themes/Neutral/Neutral";
 import NeutralList from "@/app/components/themes/Neutral/NeutralList";
-import Sahara from "@/app/components/themes/Sahara/Sahara";
 import SaharaList from "@/app/components/themes/Sahara/SaharaList";
 import githubClient from "@/app/lib/octokit";
 import prisma from "@/app/lib/prisma";
@@ -13,7 +11,6 @@ import React from "react";
 
 export default async function UserBlog({
   params,
-  searchParams,
 }: {
   params: Promise<{
     repo: string;

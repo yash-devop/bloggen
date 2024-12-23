@@ -3,10 +3,10 @@
 import { signOut } from "next-auth/react";
 // import { Button, buttonVariants } from "./ui/button";
 // import { LogOut } from "lucide-react";
-import { cn } from "@/app/utils/utils";
+// import { cn } from "@/app/utils/utils";
 
 export default function ClientSideLogoutButton({
-  icon = <p>LOGOUT BUTTON</p>,
+  // icon = <LogOut />,
 //   variant
 }:{
   icon?: React.ReactElement

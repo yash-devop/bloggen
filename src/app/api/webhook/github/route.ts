@@ -1,4 +1,5 @@
 import githubClient from "@/app/lib/octokit";
+import type { EventPayloadMap} from "@octokit/webhooks-types";
 import prisma from "@/app/lib/prisma";
 import { NextRequest, NextResponse } from "next/server";
 
@@ -30,7 +31,7 @@ export const POST = async (req: NextRequest) => {
     const body = await req.text(); // Read the request body as a string
     await githubClient.webhooks.verifyAndReceive({
       id: req.headers.get("x-github-delivery") as string, // Unique event ID from GitHub API
-      name: req.headers.get("x-github-event") as any, // Event type (e.g., "push")
+      name: req.headers.get("x-github-event") as keyof EventPayloadMap, // Event type (e.g., "push")
       signature: req.headers.get("x-hub-signature-256") as string, // HMAC signature for validation
       payload: body, // Pass the raw body for signature verification
     });
@@ -42,7 +43,7 @@ export const POST = async (req: NextRequest) => {
         status: 200,
       }
     );
-  } catch (error: any) {
+  } catch (error) {
     return NextResponse.json({
       message: "Error while installing app in your repository",
       error,

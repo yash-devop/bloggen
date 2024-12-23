@@ -53,7 +53,8 @@ export default async function BlogPage({
         <DeleteButton />
       </>
     );
-  } catch (error: any) {
+  } catch (e) {
+    const error = e as Error
     console.error("Error in BlogPage:", error);
 
     return (

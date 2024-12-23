@@ -1,6 +1,6 @@
 import ClientAuthButton from "@/app/components/ClientAuthButton";
-import { signIn } from "next-auth/react";
-import { cookies } from "next/headers";
+// import { signIn } from "next-auth/react";
+// import { cookies } from "next/headers";
 
 export default function Signin() {
   return (
@@ -11,7 +11,7 @@ export default function Signin() {
             <div className="text-center space-y-4 pb-8 flex items-center justify-center flex-col">
 
               <p className="text-center italic font-extralight text-sm cursor-default">
-                " Never Miss a Beat with Uptime Monitoring "
+              &quot; Never Miss a Beat with Uptime Monitoring &quot;
               </p>
             </div>
             <div className="flex flex-col gap-2 pt-3">

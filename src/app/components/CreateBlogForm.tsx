@@ -33,7 +33,7 @@ export default function CreateBlogForm({ repos }: { repos: string[] }) {
       toast.success(state.message); // Show success toast
       router.push(state.redirectUrl)
     }
-  }, [state]);
+  }, [state , router]);
   return (
     <>
       {/* Form */}

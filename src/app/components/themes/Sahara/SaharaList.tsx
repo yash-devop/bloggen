@@ -19,7 +19,7 @@ export default function SaharaList({ blogData }: SaharaListProps) {
         <p className="text-3xl md:text-4xl py-10 text-[#111111]">Blog</p>
       <div className="grid grid-cols-[120px_1fr] w-full md:gap-y-3 gap-x-3 md:gap-x-5">
 
-        {blogData.map(({ body, created_at, id, state, title, updated_at }) => {
+        {blogData.map(({ created_at, id, title }) => {
           const date = new Date(created_at);
           const formattedDate = format(date,"dd - MMM - yyyy")
           return (
