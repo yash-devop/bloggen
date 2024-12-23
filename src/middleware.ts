@@ -23,9 +23,6 @@ export async function middleware(request: NextRequest) {
         "Content-Type": "application/json",
       },
     });
-    const installation = await response.json();
-
-    console.log('installation in middleware',installation);
     if(!response.ok){   //404
       console.log('installation not found.... in dahsboard mid');
       return NextResponse.redirect(new URL("/install",request.url))
