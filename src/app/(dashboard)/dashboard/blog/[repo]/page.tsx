@@ -36,8 +36,8 @@ export default async function BlogPage({
     const {repoName} = existingRepo
 
     // Construct blog URL
-    const BASE_DOMAIN = process.env.NEXT_PUBLIC_BASE_DOMAIN as string;
-    const blogURL = process.env.NODE_ENV === "production" ? `http://${repoName}.blog.${BASE_DOMAIN}.com` : `http://${repoName}.blog.${BASE_DOMAIN}`
+    const BASE_DOMAIN = process.env.NEXT_PUBLIC_ROOT_DOMAIN as string;
+    const blogURL = process.env.NODE_ENV === "production" ? `http://${repoName}.${BASE_DOMAIN}.com` : `http://${repoName}.${BASE_DOMAIN}`
 
     console.log('blogURL',blogURL);
     // Render the page
