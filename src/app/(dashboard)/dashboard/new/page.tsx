@@ -4,8 +4,8 @@ import prisma from "../../../lib/prisma";
 import { auth } from "../../../utils/auth";
 import CreateBlogForm from "@/app/components/CreateBlogForm";
 export const fetchUserWithRetry = async (installationId: string) => {
-  let RETRIES = 1;
-  const RETRY_INTERVAL = 400;
+  let RETRIES = 3;
+  const RETRY_INTERVAL = 500;
 
   for (let attempt = 0; attempt < RETRIES; attempt++) {
     const user = await prisma.owner.findUnique({
