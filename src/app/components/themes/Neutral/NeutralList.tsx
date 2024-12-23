@@ -21,7 +21,7 @@ export default function NeutralList({ blogData }: NeutralListProps) {
         <div className="grid grid-cols-[100px_100px_1fr] w-full gap-y-6">
           {blogData.map(({ id, body, created_at, state, title }) => {
             const date = new Date(created_at);
-            const formattedDate = format(date, "MM • yyyy");
+            const formattedDate = format(date, "dd-MM-yyyy");
             return (
               <React.Fragment key={id}>
                 <p className="text-neutral-500 text-base">{formattedDate}</p>
@@ -29,7 +29,7 @@ export default function NeutralList({ blogData }: NeutralListProps) {
                   variant={"default"}
                   className={`gap-1 w-fit rounded-full ${
                     state
-                      ? "bg-green-800/30 text-green-600 border-green-500 hover:bg-green-800 cursor-default"
+                      ? "bg-green-800/30 text-green-600 border-green-500 hover:bg-green-800/30 cursor-default"
                       : "bg-neutral-800 text-neutral-600 border-neutral-700  hover:bg-neutral-800 cursor-default"
                   }`}
                 >
