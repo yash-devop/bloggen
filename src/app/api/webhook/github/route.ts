@@ -18,12 +18,11 @@ githubClient.webhooks.on("installation.created", async (data) => {
 
 githubClient.webhooks.on("installation.deleted", async ({ payload }) => {
   console.log("app delete block => ");
-  // await prisma.owner.delete({
-  //   where: {
-  //     // @ts-ignore
-  //     owner: String(payload.installation.account.login),
-  //   },
-  // });
+  await prisma.owner.delete({
+    where: {
+      installationId: String(payload.installation.id),
+    },
+  });
 });
 
 export const POST = async (req: NextRequest) => {
