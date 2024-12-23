@@ -3,7 +3,8 @@ import { auth } from "@/app/utils/auth";
 import { isValidSlug } from "./app/utils/isValidSlug";
 
 // const GET_BLOG_URL = "http://localhost:3000/api/findBlog"; // had to do this bcoz prisma doesnt work in edge env... to get it work , we have to use prisma accelerate.
-const GET_APP_INSTALLATION = "http://localhost:3000/api/checkInstallation";
+const VERCEL_URL = "https://bloggenblog.vercel.app"
+const GET_APP_INSTALLATION = `${VERCEL_URL}/api/checkInstallation`;
 
 export async function middleware(request: NextRequest) {
   const url = request.nextUrl;
@@ -24,7 +25,7 @@ export async function middleware(request: NextRequest) {
       },
     });
     if(!response.ok){   //404
-      console.log('installation not found.... in dahsboard mid');
+      console.log(`${response.ok}, installation not found.... in dahsboard mid`);
       return NextResponse.redirect(new URL("/install",request.url))
     }
   }
