@@ -4,6 +4,7 @@ import { notFound, redirect } from "next/navigation";
 import { isValidSlug } from "./app/utils/isValidSlug";
 
 const GET_BLOG_URL = "http://localhost:3000/api/findBlog"; // had to do this bcoz prisma doesnt work in edge env... to get it work , we have to use prisma accelerate.
+const GET_APP_INSTALLATION = "http://localhost:3000/api/checkInstallation";
 type BlogStatus = {
   success: boolean;
   message: string;
@@ -18,21 +19,26 @@ export async function middleware(request: NextRequest) {
       return NextResponse.redirect(new URL("/signin", request.url));
     }
     console.log("Authenticated User !");
-  }
-  if (request.nextUrl.pathname.startsWith("/install")) {
-    const response = await fetch(GET_BLOG_URL, {
+    // // check if installation is there or not.
+    const response = await fetch(GET_APP_INSTALLATION, {
       method: "GET",
       headers: {
         Cookie: request.headers.get("cookie") || "",
         "Content-Type": "application/json",
       },
     });
-    const user_blog: BlogStatus = await response.json();
-    console.log("user_blog", user_blog);
-    if (!user_blog) return redirect("/dashboard/new"); // redirecting to create blog page if not found.
+    const installation = await response.json();
 
-    return NextResponse.redirect(new URL("/dashboard", request.url), request); // has blogs but still access install page will redirect to all blogs dashboard
+    console.log('installation in middleware',installation);
+    if(!response.ok){   //404
+      console.log('installation not found.... in dahsboard mid');
+      return NextResponse.redirect(new URL("/install",request.url))
+    }
   }
+
+  // if (request.nextUrl.pathname.startsWith("/install")) {
+  //   console.log('Installa mid work');
+  // }
 
   const host = request.headers.get("host");
   const subdomain = host?.split(".")[0];
