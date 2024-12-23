@@ -40,6 +40,7 @@ export async function middleware(request: NextRequest) {
   const subdomain = host?.split(".")[0];
 
   if (
+    host === BASE_DOMAIN || 
     subdomain === "www" ||
     subdomain === BASE_DOMAIN ||
     url.pathname?.endsWith("/not-found")
