@@ -1,3 +1,4 @@
+import ClientSideLogoutButton from "@/app/components/ClientLogoutButton"
 import prisma from "@/app/lib/prisma"
 import { auth } from "@/app/utils/auth"
 import Link from "next/link"
@@ -13,6 +14,7 @@ export default async function DashboardPage(){
         <>
             <p>HOME DASHBOARD PAGE.</p>
             <p>Below are the all blogs.: </p>
+            <ClientSideLogoutButton />
             <div className="space-x-4">
                 {
                     blogs && blogs.length > 0 ? blogs.map((blog)=>(
