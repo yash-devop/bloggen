@@ -22,11 +22,15 @@ export const GET=async(req:NextRequest)=>{
         return NextResponse.json({
             success: false,
             message: "No blog found."
+        },{
+            status: 404
         })
     }
 
     return NextResponse.json({
         success: true,
         message: "Blog found"
+    },{
+        status: 200
     })
 }
