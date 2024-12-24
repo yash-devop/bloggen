@@ -79,6 +79,7 @@ export default async function UserBlog({
             </p>
             {JSON.stringify(blog)}
           </div> */}
+          {/* <p className="text-red-400">HAA ISSUES TAB WORKING</p> */}
           <ListComponent blogData={issues.data} />
       </>
     );
