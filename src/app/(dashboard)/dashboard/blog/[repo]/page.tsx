@@ -40,7 +40,7 @@ export default async function BlogPage({
 
     // Construct blog URL
     const BASE_DOMAIN = process.env.NEXT_PUBLIC_ROOT_DOMAIN as string;
-    const blogURL = process.env.NODE_ENV === "production" ? `http://${encodedrepo}.${BASE_DOMAIN}.com` : `http://${encodedrepo}.${BASE_DOMAIN}`
+    const blogURL = process.env.NODE_ENV === "production" ? `https://${encodedrepo}.blog.${BASE_DOMAIN}` : `http://${encodedrepo}.blog.${BASE_DOMAIN}`
 
     console.log('blogURL',blogURL);
     // Render the page
