@@ -4,7 +4,6 @@ import githubClient from "@/app/lib/octokit";
 import prisma from "@/app/lib/prisma";
 import { getTheme } from "@/app/utils/getTheme";
 import { decodeRepoName } from "@/app/utils/modifyRepo";
-import { headers } from "next/headers";
 import { notFound } from "next/navigation";
 import React from "react";
 
@@ -84,6 +83,7 @@ export default async function UserBlog({
       </>
     );
   } catch (error) {
+    console.log('error',error);
     notFound()
   }
 

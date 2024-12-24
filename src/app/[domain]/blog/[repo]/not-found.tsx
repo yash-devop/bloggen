@@ -1,6 +1,5 @@
 import { getTheme } from "@/app/utils/getTheme";
 import { Link } from "lucide-react";
-import { headers } from "next/headers";
 
 export default async function NotFound() {
   const theme = await getTheme()

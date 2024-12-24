@@ -1,7 +1,6 @@
 import Neutral from "@/app/components/themes/Neutral/Neutral";
 import Sahara from "@/app/components/themes/Sahara/Sahara";
 import { getTheme } from "@/app/utils/getTheme";
-import { headers } from "next/headers";
 import React from "react";
 
 

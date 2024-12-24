@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import { auth } from "@/app/utils/auth";
-import { isValidSlug } from "./app/utils/isValidSlug";
+// import { isValidSlug } from "./app/utils/isValidSlug";
 
 // const GET_BLOG_URL = "http://localhost:3000/api/findBlog"; // had to do this bcoz prisma doesnt work in edge env... to get it work , we have to use prisma accelerate.
 const VERCEL_URL = "https://bloggenblog.yashstack.com";
@@ -38,7 +38,7 @@ export async function middleware(request: NextRequest) {
   // if (request.nextUrl.pathname.startsWith("/install")) {
   //   console.log('Installa mid work');
   // }
-  let hostname = request.headers
+  const hostname = request.headers
     .get("host")!
     .replace(".localhost:3000", `.${process.env.NEXT_PUBLIC_ROOT_DOMAIN}`);
 
