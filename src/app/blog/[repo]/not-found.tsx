@@ -1,9 +1,12 @@
+import { getTheme } from "@/app/utils/getTheme";
 import { Link } from "lucide-react";
+import { headers } from "next/headers";
 
-export default function NotFound() {
+export default async function NotFound() {
+  const theme = await getTheme()
   return (
     <>
-      <div>
+      <div className={`${theme === "sahara" ? "text-black" : "text-white"}`}>
         <h2>PAGE NOT FOUND</h2>
         <p>404</p>
         <Link href="/">Return Home</Link>

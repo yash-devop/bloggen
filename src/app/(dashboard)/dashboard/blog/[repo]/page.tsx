@@ -1,5 +1,6 @@
 import DeleteButton from "@/app/components/ClientDeleteBlogButton";
 import prisma from "@/app/lib/prisma";
+import { encodeRepoName } from "@/app/utils/modifyRepo";
 import Link from "next/link";
 import { notFound, redirect } from "next/navigation";
 
@@ -35,16 +36,18 @@ export default async function BlogPage({
 
     const {repoName} = existingRepo
 
+    const encodedrepo = encodeRepoName(repoName)
+
     // Construct blog URL
     const BASE_DOMAIN = process.env.NEXT_PUBLIC_ROOT_DOMAIN as string;
-    const blogURL = process.env.NODE_ENV === "production" ? `http://${repoName}.${BASE_DOMAIN}.com` : `http://${repoName}.${BASE_DOMAIN}`
+    const blogURL = process.env.NODE_ENV === "production" ? `http://${encodedrepo}.${BASE_DOMAIN}.com` : `http://${encodedrepo}.${BASE_DOMAIN}`
 
     console.log('blogURL',blogURL);
     // Render the page
     return (
       <>
         <p>
-          Blog {repoName}: {JSON.stringify(existingRepo)}
+          Blog {repoName} ENCODED === {encodedrepo}: {JSON.stringify(existingRepo)}
         </p>
 
         <Link href={blogURL}>
