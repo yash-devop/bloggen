@@ -3,7 +3,7 @@ import { auth } from "@/app/utils/auth";
 // import { isValidSlug } from "./app/utils/isValidSlug";
 
 // const GET_BLOG_URL = "http://localhost:3000/api/findBlog"; // had to do this bcoz prisma doesnt work in edge env... to get it work , we have to use prisma accelerate.
-const VERCEL_URL = "https://bloggenblog.yashstack.com";
+const VERCEL_URL = "https://bloggen.yashstack.com";
 const LOCALHOST_URL = "http://localhost:3000";
 const GET_APP_INSTALLATION = `${LOCALHOST_URL}/api/checkInstallation`;
 
@@ -42,6 +42,7 @@ export async function middleware(request: NextRequest) {
     .get("host")!
     .replace(".localhost:3000", `.${process.env.NEXT_PUBLIC_ROOT_DOMAIN}`);
 
+    console.log('hostname',hostname);
   const subdomain = hostname.split(".")[0];
 
   const searchParams = request.nextUrl.searchParams.toString();
