@@ -18,8 +18,8 @@ export async function createRepo(
   previousState: State | null,
   formData: FormData
 ): Promise<State> {
-  const blogName = formData.get("blogName")?.toString();
-  const repoName = formData.get("repoName")?.toString();
+  const blogName = formData.get("blogName")?.toString().toLowerCase().trim();
+  const repoName = formData.get("repoName")?.toString().toLowerCase().trim();
 
   if (!blogName || !repoName) {
     return {
@@ -27,8 +27,6 @@ export async function createRepo(
       message: "Both Blog Name and Repository Name are required.",
     };
   }
-  const blogNameTrimmed = blogName.toLowerCase();
-  const repoNameTrimmed = repoName.toLowerCase().replace(/\./g, "-").trim();
 
   const session = await auth();
   if (!session) {
@@ -40,7 +38,7 @@ export async function createRepo(
   try {
     const existing_blog = await prisma.blog.findFirst({
       where: {
-        repoName: repoNameTrimmed,
+        repoName,
       },
     });
 
@@ -48,8 +46,8 @@ export async function createRepo(
     if (!existing_blog) {
       const new_blog = await prisma.blog.create({
         data: {
-          blogName: blogNameTrimmed,
-          repoName: repoNameTrimmed,
+          blogName,
+          repoName,
           owner: session.user.username,
         },
       });
