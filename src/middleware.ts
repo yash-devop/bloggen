@@ -50,7 +50,7 @@ export async function middleware(request: NextRequest) {
   const path = `${url.pathname}${
     searchParams.length > 0 ? `?${searchParams}` : ""
   }`;
-  if (hostname === `${BASE_DOMAIN}`) {
+  if (hostname === `bloggen.${BASE_DOMAIN}`) {
     console.log("url", request.url);
     console.log('Path in normal route :',`${url.protocol}//${hostname}/blog/${subdomain}${path}`);
     const response = NextResponse.next();
