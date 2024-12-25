@@ -10,7 +10,7 @@ const GET_APP_INSTALLATION = `${LOCALHOST_URL}/api/checkInstallation`;
 export async function middleware(request: NextRequest) {
   console.log("MIDDLEWARE RUNNING");
   const url = request.nextUrl;
-  const baseUrl = process.env.NODE_ENV === "production" ? VERCEL_URL : LOCALHOST_URL;
+  // const baseUrl = process.env.NODE_ENV === "production" ? VERCEL_URL : LOCALHOST_URL;
   const BASE_DOMAIN = process.env.NEXT_PUBLIC_ROOT_DOMAIN as string;
   if (request.nextUrl.pathname.startsWith("/dashboard")) {
     console.log("DASHBOARD PAGE running");
