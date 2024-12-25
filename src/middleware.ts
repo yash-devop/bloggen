@@ -3,7 +3,7 @@ import { auth } from "@/app/utils/auth";
 // import { isValidSlug } from "./app/utils/isValidSlug";
 
 // const GET_BLOG_URL = "http://localhost:3000/api/findBlog"; // had to do this bcoz prisma doesnt work in edge env... to get it work , we have to use prisma accelerate.
-const VERCEL_URL = "https://bloggen.yashstack.com";
+// const VERCEL_URL = "https://bloggen.yashstack.com";
 const LOCALHOST_URL = "http://localhost:3000";
 const GET_APP_INSTALLATION = `${LOCALHOST_URL}/api/checkInstallation`;
 
