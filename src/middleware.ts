@@ -52,7 +52,9 @@ export async function middleware(request: NextRequest) {
   }`;
   if (hostname === `bloggen.${BASE_DOMAIN}` || hostname.includes("localhost:3000")) {
     console.log("url", request.url);
-    console.log('Path in normal route :',`${url.protocol}//${hostname}/blog/${subdomain}${path}`);
+    console.log('Path in normal route :',`${url.protocol}${hostname}/blog/${subdomain}${path}`);
+    console.log('subdomain',subdomain);
+    console.log('new URL(`${url.protocol}${hostname}/blog/${subdomain}${path}`, request.url)  ',new URL(`${url.protocol}${hostname}/blog/${subdomain}${path}`, request.url).toString());
     const response = NextResponse.next();
     response.headers.set("x-theme", "neutral");
     return response
@@ -62,7 +64,7 @@ export async function middleware(request: NextRequest) {
     console.log("url", request.url);
     console.log('Path in .localhost:',`${url.protocol}//${hostname}/blog/${subdomain}${path}`);
     const response = NextResponse.rewrite(
-      new URL(`${url.protocol}${hostname}/blog/${subdomain}${path}`, request.url)      // fix this and good to go !
+      new URL(`/blog/${subdomain}${path}`, request.url)      // fix this and good to go !
     );
     response.headers.set("x-theme", "neutral");
 
