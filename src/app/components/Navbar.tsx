@@ -6,7 +6,7 @@ export default function Navbar(){
     return (
         <>
             <header className="border-b border-b-[#DADADA]">
-                <nav className="flex p-3 justify-between items-center">
+                <nav className="flex p-3 justify-between items-center max-w-[1700px] mx-auto">
                     <Bloggen />
                     <div className="flex gap-2">
                         <Link href={`/signin`}>
