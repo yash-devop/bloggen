@@ -5,7 +5,6 @@ import { Button } from "./ui/button";
 import Link from "next/link";
 import React from "react";
 import DotBackground from "./svgs/DotBackground";
-import { title } from "process";
 
 export default function Features() {
   const contents = [
@@ -41,7 +40,7 @@ export default function Features() {
         href: "/dashboard/new"
       },
       subHeading:
-        "Quickly and securely sign in with your GitHub account to get started.",
+        "Start creating blogs from you own repositories issues.",
       element: CreateBlogImage,
       position: "left",
     },
