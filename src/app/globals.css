@@ -62,7 +62,9 @@ body {
     --chart-5: 340 75% 55%;
   }
 }
-
+html {
+  scroll-behavior: smooth;
+}
 @layer base {
   * {
     @apply border-border;
@@ -92,4 +94,35 @@ body {
 /* Handle on hover */
 ::-webkit-scrollbar-thumb:hover {
   background: #555;
+}
+
+.cloudanimation {
+  animation: cloud-animation calc(12s * var(--i)) linear infinite;
+}
+
+.moving-UTD-Dash {
+  animation: UTD-Dash 5s linear infinite;
+}
+.moving-DTU-Dash {
+  animation: DTU-Dash 200s linear infinite;
+}
+
+@keyframes cloud-animation {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+@keyframes UTD-Dash {
+  to {
+    stroke-dashoffset: 1000;
+  }
+}
+@keyframes DTU-Dash {
+  to {
+    stroke-dashoffset: 1000;
+  }
 }
