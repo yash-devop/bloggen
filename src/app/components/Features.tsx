@@ -97,7 +97,7 @@ const FeatureContent = ({
   return (
     <>
       <div
-        className={`border-neutral-200 w-full md:w-1/2 h-full flex justify-center items-center`}
+        className={`w-full md:w-1/2 h-full flex justify-center items-center`}
       >
         <div className="px-8 md:px-14 lg:px-28">
           <p className="text-3xl leading-[1.2em]">
@@ -134,7 +134,7 @@ const FeatureImage = ({
   return (
     <>
       <div
-        className={`border border-neutral-200 rounded-2xl w-full md:w-1/2 h-full  py-20 px-6 md:px-9 lg:px-14 flex items-center justify-center`}
+        className={`border border-neutral-300 rounded-2xl w-full md:w-1/2 h-full  py-20 px-6 md:px-9 lg:px-14 flex items-center justify-center`}
       >
         <Element />
       </div>
@@ -196,8 +196,17 @@ const CreateBlogImage = () => {
         {/* Background with blur effect */}
 
         {/* Button container */}
-        <div className="relative z-10 p-2 flex flex-col">
-          <Cursor name="Yash kamble 12321 321  321  321"/>
+        <div className="relative z-10 p-2 flex flex-col w-full items-center justify-center">
+          <div className="flex items-center py-2 gap-3 bg-rose-100 border border-rose-400 px-3 rounded-2xl shadow-md shadow-rose-300 cursor-default select-none">
+            <div className="size-10 bg-rose-200 rounded-lg flex items-center justify-center">
+              <BlogIcon className="shrink-0"/>
+            </div>
+            <div>
+              <p className="text-sm md:text-base tracking-tight">Create Blog</p>
+              <p className="text-neutral-500 text-xs font-light">Start building blog for the issues.</p>
+            </div>
+          </div>
+          <Cursor name="Yash" className="relative bottom-2 -right-20"/>
         </div>
       </div>
     </>
@@ -233,18 +242,37 @@ const DashedAnimatedSVG = ({ dir }: { dir: "up-to-down" | "down-to-up" }) => {
 
 
 const Cursor=({
-  name = "Joe"
+  name = "Joe",
+  className
 }:{
-  name: string
+  name: string,
+  className?: string
 })=>{
   return (
     <>
-      <div className="">
+      <div className={`${className} w-fit`}>
         <MousePointer2 className="stroke-[#E9435C] fill-[#E9435C] relative"/>
-        <div className="rounded-full py-1 px-3 w-full truncate bg-green-400 relative left-5 text-xs text-white cursor-default select-none">
+        <div className="rounded-full py-1 px-3 w-full truncate bg-green-400 relative left-5  text-xs text-white cursor-default select-none">
           <p>{name}</p>
         </div>
       </div>
     </>
   )
 }
+const BlogIcon=({
+  className
+}:{
+  className?: string
+})=>{
+  return (
+    <>
+     <svg width="25" height="25" viewBox="0 0 25 25" fill="none" xmlns="http://www.w3.org/2000/svg" className={className}>
+<path d="M7.65625 2.34375H6.45833C5.3125 2.34375 4.375 3.28125 4.375 4.42708V20.5729C4.375 21.7187 5.3125 22.6562 6.45833 22.6562H7.65625M7.65625 2.34375V22.6562M7.65625 2.34375H18.5417C19.6875 2.34375 20.625 3.28125 20.625 4.42708V20.5729C20.625 21.7187 19.6875 22.6562 18.5417 22.6562H7.65625" stroke="#E9435C" strokeWidth="0.5" strokeLinecap="round" strokeLinejoin="round"/>
+</svg>
+
+    </>
+  )
+}
+
+
+
