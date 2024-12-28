@@ -5,12 +5,17 @@ import { Button } from "./ui/button";
 import Link from "next/link";
 import React from "react";
 import DotBackground from "./svgs/DotBackground";
+import { title } from "process";
 
 export default function Features() {
   const contents = [
     {
       hightlight: "Sign in",
       heading: "with your github",
+      button: {
+        title: "Sign in with github",
+        href: "/signin"
+      },
       subHeading:
         "Quickly and securely sign in with your GitHub account to get started.",
       element: GithubImage,
@@ -19,6 +24,10 @@ export default function Features() {
     {
       hightlight: "Install",
       heading: "the bloggen app",
+      button: {
+        title: "Install bloggen",
+        href: "/install"
+      },
       subHeading:
         "Bloggen app will communicate with your Github's choosen repository.",
       element: InstallAppImage,
@@ -27,6 +36,10 @@ export default function Features() {
     {
       hightlight: "Create Blog",
       heading: "with your github issues",
+      button: {
+        title: "Start creating blog",
+        href: "/dashboard/new"
+      },
       subHeading:
         "Quickly and securely sign in with your GitHub account to get started.",
       element: CreateBlogImage,
@@ -83,10 +96,18 @@ const FeatureContent = ({
   heading,
   hightlight,
   subHeading,
+  button:{
+    href,
+    title
+  }
 }: {
   hightlight: string;
   heading: string;
   subHeading: string;
+  button: {
+    href: string,
+    title: string
+  }
 }) => {
   return (
     <>
@@ -101,11 +122,11 @@ const FeatureContent = ({
           </p>
           <p className="py-4 leading-[1.75em] text-[#3a3939]">{subHeading}</p>
           <Link
-            href={``}
+            href={href}
             className="flex items-center justify-center md:justify-start mt-8 group text-primary"
           >
             <Button variant={"link"} className="p-0">
-              Sign in with github
+              {title}
             </Button>
             <ChevronRight
               size={15}
@@ -158,9 +179,6 @@ const InstallAppImage = () => {
   return (
     <>
       <div className="relative flex items-center justify-center h-full w-full rounded-tr-2xl rounded-br-2xl overflow-hidden">
-        {/* Background with blur effect */}
-
-        {/* Button container */}
         <div className="relative z-10 p-2 flex flex-col">
           <Button className="bg-[#121212] bg-gradient-to-t from-[#121212] to-[#494949] to-100%">
             <Github />
