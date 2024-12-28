@@ -2,12 +2,9 @@
 import { useEffect, useState } from "react";
 import Navbar from "./components/Navbar";
 import Stories from "react-insta-stories";
-import BlogFooter from "./components/themes/BlogFooter";
 import { Button } from "./components/ui/button";
 import { Instrument_Serif } from "next/font/google";
 import Features from "./components/Features";
-import DotterFooter from "./components/svgs/DotterFooter";
-import Bloggen from "./components/logos/bloggen";
 const instrumentSerif = Instrument_Serif({
   weight: ["400"],
   subsets: ["latin"],

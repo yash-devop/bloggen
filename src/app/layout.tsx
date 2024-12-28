@@ -2,7 +2,6 @@ import type { Metadata } from "next";
 import localFont from "next/font/local";
 import "./globals.css";
 import {Toaster} from "sonner"
-import Head from "next/head";
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -20,7 +19,6 @@ export const metadata: Metadata = {
   description: "Turn your github repository issues into blog",
   // icons: ["./favicon.ico"]
 };
-Head
 export default function RootLayout({
   children,
 }: Readonly<{
