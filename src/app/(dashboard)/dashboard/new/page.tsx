@@ -5,6 +5,8 @@ import { auth } from "../../../utils/auth";
 import CreateBlogForm from "@/app/components/CreateBlogForm";
 import { fetchUserWithRetry } from "@/app/utils/fetchWithRetry";
 
+
+export const revalidate = 30;
 export default async function DashboardPage({
   searchParams,
 }: {
@@ -50,9 +52,11 @@ export default async function DashboardPage({
   }
   return (
     <>
-      <p>Im Dashboard page with installation id: {user?.installationId}</p>
-
-      <CreateBlogForm repos={repos_names} />
+      {/* <p>Im Dashboard page with installation id: {user?.installationId}</p> */}
+      <div className="flex flex-col items-center justify-center w-full min-h-screen max-w-md mx-auto ">
+      <p className="text-2xl text-black text-left pb-8 w-full px-4">Create new blog</p>
+        <CreateBlogForm repos={repos_names} />
+      </div>
     </>
   );
 }
