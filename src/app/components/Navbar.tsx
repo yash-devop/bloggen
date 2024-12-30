@@ -39,7 +39,7 @@ export default function Navbar() {
           {session && session?.user ? (
             <Link href="/dashboard">
               <Button className="font-sans border border-[#2b2b2b] bg-black hover:bg-black text-white hover:bg-gradient-to-t transition-all hover:from-black hover:to-[#2b2b2b] focus:bg-gradient-to-t focus:from-gray-700 focus:to-gray-900 animate-in fade-in">
-                Go to Dashboard
+                {session.user.name}&apos;s Dashboard
               </Button>
             </Link>
           ) : (
