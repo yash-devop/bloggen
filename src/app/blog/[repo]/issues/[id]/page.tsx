@@ -11,7 +11,7 @@ export default async function IssuePage({
   params: Promise<{
     repo: string;
     id: string;
-  }>
+  }>;
 }) {
   const theme = await getTheme();
   const issueId = (await params).id;
@@ -49,6 +49,11 @@ export default async function IssuePage({
   );
 
   try {
+    const issue = await octokit.rest.issues.get({
+      owner: owner.owner,
+      repo: blog.repoName || repoId,
+      issue_number: Number(issueId),
+    });
     const comments = await octokit.rest.issues.listComments({
       owner: owner.owner,
       repo: blog.repoName || repoId,
@@ -56,31 +61,52 @@ export default async function IssuePage({
     });
     //   const ListComponent = theme === "neutral" ? NeutralList : SaharaList;
 
-    console.log('comments',comments);
+    console.log("comments", comments);
     return (
       <>
         <div className="flex flex-col">
-        <div className="flex justify-between flex-wrap gap-4 pb-16">
-          <h1 className={`text-3xl ${
-          theme === "sahara" ? "text-black" : "text-white"
-        }`}>{repoName}</h1>
-          <div className="">
-            <Button className={"text-base"}>
-                <a target="_blank" href={`https://github.com/${owner.owner}/${repoName}/issues/${issueId}`}>
-                Leave a comment ?
+          <div className="flex justify-between flex-wrap gap-4 pb-16">
+            <h1
+              className={`text-3xl ${
+                theme === "sahara" ? "text-black" : "text-white"
+              }`}
+            >
+              {repoName}
+            </h1>
+            <div className="">
+              <Button className={"text-base"}>
+                <a
+                  target="_blank"
+                  href={`https://github.com/${owner.owner}/${repoName}/issues/${issueId}`}
+                >
+                  Leave a comment ?
                 </a>
-            </Button>
+              </Button>
+            </div>
           </div>
-        </div>
+          <div className="flex flex-col gap-6">
+            <div
+              className={`w-full border-b border-neutral-700 py-4 ${
+                theme === "sahara" ? "text-black" : "text-white"
+              }`}
+            >
+              <p className={`text-3xl ${
+                theme === "sahara" ? "text-black" : "text-white"
+              }`}>Issue</p>
+            </div>
+            <MarkdownComponent markdown={issue.data.body!} theme={theme} />
+          </div>
           {comments && comments.data.length > 0 ? (
-            comments.data.map((comment , idx) => {
+            comments.data.map((comment, idx) => {
               return (
                 <>
-                  <div className="flex flex-col gap-6">
-                    <div className={`w-full border-b border-neutral-700 py-4 ${
-          theme === "sahara" ? "text-black" : "text-white"
-        }`}>
-                        <p>Comment {idx+1}</p>
+                  <div className="flex flex-col gap-6 pt-8">
+                    <div
+                      className={`w-full border-b border-neutral-700 py-4 ${
+                        theme === "sahara" ? "text-black" : "text-white"
+                      }`}
+                    >
+                      <p>Comment {idx + 1}</p>
                     </div>
                     <MarkdownComponent markdown={comment.body!} theme={theme} />
                   </div>
@@ -88,7 +114,9 @@ export default async function IssuePage({
               );
             })
           ) : (
-            <p className="text-center py-10 text-neutral-600">No comments on this issue...wowowowow</p>
+            <p className="text-center py-10 text-neutral-600">
+              No comments on this issue...wowowowow
+            </p>
           )}
         </div>
       </>
