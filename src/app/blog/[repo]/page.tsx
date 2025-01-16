@@ -67,6 +67,7 @@ export default async function UserBlog({
       </>
     );
   } catch (error) {
+    console.log('error',error);
     notFound()
   }
 
