@@ -2,11 +2,10 @@
 import { useEffect, useState } from "react";
 import Navbar from "./components/Navbar";
 import Stories from "react-insta-stories";
-import { Button } from "./components/ui/button";
 import { Instrument_Serif } from "next/font/google";
 import Features from "./components/Features";
-import Link from "next/link";
 import { BloggenVector } from "./components/svgs/BloggenVector";
+import Image from "next/image";
 const instrumentSerif = Instrument_Serif({
   weight: ["400"],
   subsets: ["latin"],
@@ -44,7 +43,9 @@ export default function Home() {
             {/* <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-b from-transparent to-white to-100%"></div> */}
             <div className="absolute -bottom-5 left-0 w-full h-[90px] bg-gradient-to-b from-white from-5% to-white to-100% z-[100] blur-[100px]"></div>
             <div className="absolute top-0 left-0 w-full h-full overflow-hidden z-[40]">
-              <img
+              <Image
+                width={1400}
+                height={0}
                 src="/cloud1.png"
                 alt=""
                 className="absolute -bottom-12 max-w-full cloudanimation"
@@ -53,7 +54,9 @@ export default function Home() {
                     Record<string, string | number>
                 }
               />
-              <img
+              <Image
+                width={1400}
+                height={0}
                 src="/cloud2.png"
                 alt=""
                 className="absolute -bottom-12 max-w-full cloudanimation"
@@ -62,7 +65,9 @@ export default function Home() {
                     Record<string, string | number>
                 }
               />
-              <img
+              <Image
+                width={1400}
+                height={0}
                 src="/cloud3.png"
                 alt=""
                 className="absolute -bottom-12 max-w-full cloudanimation"
@@ -71,7 +76,9 @@ export default function Home() {
                     Record<string, string | number>
                 }
               />
-              <img
+              <Image
+                width={1400}
+                height={0}
                 src="/cloud4.png"
                 alt=""
                 className="absolute -bottom-12 max-w-full cloudanimation"
@@ -80,7 +87,9 @@ export default function Home() {
                     Record<string, string | number>
                 }
               />
-              <img
+              <Image
+                width={1400}
+                height={0}
                 src="/cloud5.png"
                 alt=""
                 className="absolute -bottom-12 max-w-full cloudanimation"
@@ -109,7 +118,6 @@ export default function Home() {
                   <br />
                   streamline knowledge, one post at a time.
                 </p>
-
               </div>
 
               <div className="max-w-5xl w-full mx-auto py-2 bg-[#e299a4] p-2 rounded-xl z-[12]">
@@ -153,10 +161,18 @@ export default function Home() {
         </div>
         <footer className="bg-white text-black pt-40 px-10 font-sans tracking-tight overflow-hidden">
           <div className="bg-blues-500 flex flex-col justify-center items-center">
-            <p className="text-neutral-400">© {new Date().getFullYear()} Bloggen. All rights reserved.</p>
+            <p className="text-neutral-400">
+              © {new Date().getFullYear()} Bloggen. All rights reserved.
+            </p>
             <div className="overflow-hidden translate-y-9 relative hidden lg:block">
               <BloggenVector />
-              <div className="pointer-events-none absolute inset-x-0 bottom-0 h-1/2" style={{background:"linear-gradient(180deg, rgba(247, 247, 247, 0) 0%, rgba(247, 247, 247, 0.48) 72%)"}} />
+              <div
+                className="pointer-events-none absolute inset-x-0 bottom-0 h-1/2"
+                style={{
+                  background:
+                    "linear-gradient(180deg, rgba(247, 247, 247, 0) 0%, rgba(247, 247, 247, 0.48) 72%)",
+                }}
+              />
             </div>
           </div>
         </footer>
@@ -164,4 +180,3 @@ export default function Home() {
     </>
   );
 }
-

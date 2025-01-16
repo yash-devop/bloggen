@@ -66,7 +66,7 @@ export default function CreateBlogForm({ repos }: { repos: string[] }) {
               </SelectContent>
             </Select>
           </div>
-      <p className="text-xs text-neutral-500 text-left w-full max-w-md pt-10 pb-4 px-2">By clicking 'Create Blog', you'll start the process of setting up your blog and customizing it for your content.</p>
+      <p className="text-xs text-neutral-500 text-left w-full max-w-md pt-10 pb-4 px-2">By clicking &apos;Create Blog&apos;, you&apos;ll start the process of setting up your blog and customizing it for your content.</p>
 
           <Button
             type="submit"

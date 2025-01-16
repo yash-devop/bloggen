@@ -1,13 +1,10 @@
 import DeleteButton from "@/app/components/ClientDeleteBlogButton";
 import ClientSideLogoutButton from "@/app/components/ClientLogoutButton";
-import SoloLogo from "@/app/components/logos/logo";
-import { BloggenVector } from "@/app/components/svgs/BloggenVector";
 import { Button } from "@/app/components/ui/button";
 import prisma from "@/app/lib/prisma";
 import { encodeRepoName } from "@/app/utils/modifyRepo";
 import Link from "next/link";
 import { notFound, redirect } from "next/navigation";
-import Image from "next/image";
 import { ExternalLink } from "lucide-react";
 
 export default async function BlogPage({
@@ -88,7 +85,6 @@ const BlogCard = async ({
   owner,
   repoName,
   updatedAt,
-  id,
 }: {
   id: string;
   blogURL: string;
