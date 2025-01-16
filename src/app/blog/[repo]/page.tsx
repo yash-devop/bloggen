@@ -22,12 +22,8 @@ export default async function UserBlog({
 }) {
   const repoId = (await params).repo;
   const theme = await getTheme()
-  console.log("params: ", await params);
   console.log("query: ", theme);
-  console.log("repoName:", repoId);
-
   const repoName = decodeRepoName(repoId)
-  console.log('decodedRepoName',repoName);
   const blog = await prisma.blog.findFirst({
     where: {
       repoName,
@@ -71,14 +67,6 @@ export default async function UserBlog({
   
     return (
       <>
-          {/* <div className="text-red-400">
-            <p>{repoId}</p>
-            <p>
-              Blog page working. with Github INSTALLATION ID : {installationId}
-            </p>
-            {JSON.stringify(blog)}
-          </div> */}
-          {/* <p className="text-red-400">HAA ISSUES TAB WORKING</p> */}
           <ListComponent blogData={issues.data} />
       </>
     );
