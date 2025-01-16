@@ -31,9 +31,9 @@ export default function Home() {
 
   return (
     <>
-      <div className="min-h-screen flex flex-col max-w-[1400px] mx-auto p-3 ">
+      <div className="min-h-screen flex flex-col ">
         <Navbar />
-        <div className="flex-grow">
+        <div className="flex-grow p-3 ">
           <div
             className="relative max-w-[1400px] mx-auto w-full bg-cover bg-center rounded-tr-3xl rounded-tl-3xl my-3"
             style={{
@@ -43,7 +43,7 @@ export default function Home() {
             <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-b from-[#fe526ca4] from-0% to-white to-100% opacity-100 z-[1] rounded-tr-3xl rounded-tl-3xl"></div>
             {/* <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-b from-transparent to-white to-100%"></div> */}
             <div className="absolute -bottom-5 left-0 w-full h-[90px] bg-gradient-to-b from-white from-5% to-white to-100% z-[100] blur-[100px]"></div>
-            <div className="absolute top-0 left-0 w-full h-full overflow-hidden z-[-1]">
+            <div className="absolute top-0 left-0 w-full h-full overflow-hidden z-[40]">
               <img
                 src="/cloud1.png"
                 alt=""
@@ -91,8 +91,8 @@ export default function Home() {
               />
             </div>
 
-            <div className="mx-auto text-center font-sans flex-grow relative z-[10] lg:pt-40 md:pt-36 pt-24 px-4">
-              <div className="flex flex-col justify-center items-center">
+            <div className="mx-auto text-center font-sans flex-grow relative z-[11] lg:pt-40 md:pt-36 pt-24 px-4">
+              <div className="flex flex-col justify-center items-center z-[50]">
                 <h1
                   className={`lg:text-7xl md:text-6xl text-3xl sm:text-5xl font-semibold tracking-tight text-white drop-shadow-2xl backdrop-blur-[2px] py-3 text-center`}
                 >
@@ -104,23 +104,15 @@ export default function Home() {
                     blog
                   </span>
                 </h1>
-                <p className="font-medium text-[#f0f0f0] tracking-wide text-xl py-5">
+                <p className="font-medium text-[#f0f0f0] tracking-wide text-xl py-5 pb-12">
                   Transform your GitHub issues into polished, shareable blogs —{" "}
                   <br />
                   streamline knowledge, one post at a time.
                 </p>
 
-                <div className="flex items-center justify-center backdrop-blur-sm gap-7 pt-8 pb-12 font-sans transition-all ">
-                  <Link href={"/signin"} className="">
-                    <Button className="font-sans border border-[#2b2b2b] bg-black hover:bg-black text-white hover:bg-gradient-to-t transition-colors hover:from-black hover:to-[#2b2b2b] focus:bg-gradient-to-t focus:from-gray-700 focus:to-gray-900 duration-300 ease-in-out">
-                      Get Started - It&apos;s free
-                    </Button>
-                  </Link>
-                  {/* <Button className="text-[#FE526C] bg-white">Get Started - It&apos;s free</Button> */}
-                </div>
               </div>
 
-              <div className="max-w-5xl w-full mx-auto py-2 bg-[#e299a4] p-2 rounded-xl ">
+              <div className="max-w-5xl w-full mx-auto py-2 bg-[#e299a4] p-2 rounded-xl z-[12]">
                 {storiesLoaded ? (
                   <Stories
                     key={Math.random()}
@@ -158,14 +150,6 @@ export default function Home() {
           <div className="max-w-[1480px] mx-auto h-full py-10 w-full border-l border-r border-dashed border-neutral-300">
             <Features />
           </div>
-          {/* <div className="w-full pb-6 pt-28 relative">
-            <DotterFooter className="object-cover w-full"/>
-            <div className="w-full h-[132px] absolute top-7 right-0 left-0 bg-gradient-to-b from-white from-0% to-white to-100% blur-[60px]"></div>
-            <div className="w-full h-[100px] absolute bottom-0 right-0 left-0 bg-gradient-to-b from-white  from-0% to-white to-100% blur-[60px]"></div>
-            <div className="w-[120px] h-[100px] absolute bottom-28 right-0 left-0 bg-gradient-to-b from-white  from-0% to-white to-100% blur-[60px]"></div>
-            <div className="w-[120px] h-[100px] absolute bottom-28 right-0 bg-gradient-to-b from-white  from-0% to-white to-100% blur-[60px]"></div>
-          </div> */}
-
         </div>
         <footer className="bg-white text-black pt-40 px-10 font-sans tracking-tight overflow-hidden">
           <div className="bg-blues-500 flex flex-col justify-center items-center">
