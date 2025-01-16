@@ -1,20 +1,18 @@
 "use client";
 
 import { signIn } from "next-auth/react";
-// import { Button, ButtonProps } from "./ui/button";
-// import { GoogleIcon } from "./icons/Google";
-// import { GithubIcon } from "./icons/Github";
-// import { cn } from "@/app/utils/utils";
+import { Button, ButtonProps } from "./ui/button";
 import React from "react";
+import { Github } from "./logos/github";
 
 export default function ClientAuthButton({
   type,
   redirectTo = "install",
-//   buttonProps,
+  buttonProps,
 }: {
   type: "github" | "google";
   redirectTo: string;
-//   buttonProps?: ButtonProps;
+  buttonProps?: ButtonProps;
 }) {
   const authRenderer:{
     [key:string]: {
@@ -24,20 +22,21 @@ export default function ClientAuthButton({
   } = {
     github: {
         title: "Continue with Github",
-        icon: <p>GITHUB</p>
+        icon: <Github />
     }
   };
   return (
-      <button
+      <Button
         type="button"
         onClick={async () =>
           await signIn(type, {
             redirectTo,
           })
         }
+        {...buttonProps}
       >
         {authRenderer[type]?.icon}
         <p>{authRenderer[type]?.title}</p>
-      </button>
+      </Button>
   );
 }
