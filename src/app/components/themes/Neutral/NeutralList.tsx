@@ -18,7 +18,7 @@ export default function NeutralList({ blogData }: NeutralListProps) {
     <>
       <div className="w-full max-w-3xl mx-auto h-full pt-4  px-4 lg:px-0">
         <p className="text-3xl md:text-4xl py-10">Blog</p>
-        <div className="grid grid-cols-[100px_100px_1fr] w-full gap-y-6">
+        <div className={`grid ${blogData && blogData.length > 0 ? 'grid-cols-[100px_100px_1fr]' : 'grid-cols-1'} w-full gap-y-6 min-h-full`}>
           {blogData && blogData.length > 0  ?  blogData.map(({ number, created_at, state, title }) => {
             const date = new Date(created_at);
             const formattedDate = format(date, "dd-MM-yyyy");
@@ -47,7 +47,7 @@ export default function NeutralList({ blogData }: NeutralListProps) {
                 </Link>
               </React.Fragment>
             );
-          }): <p className="text-neutral-500 py-10">No issues found in your repository.</p>}
+          }): <p className="text-neutral-500 py-10 text-center">No issues found in your repository.</p>}
         </div>
       </div>
     </>

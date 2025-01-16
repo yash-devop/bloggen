@@ -17,7 +17,7 @@ export default function SaharaList({ blogData }: SaharaListProps) {
   return (
     <>
         <p className="text-3xl md:text-4xl py-10 text-[#b4985e]">Blog</p>
-      <div className="grid grid-cols-[120px_1fr] w-full md:gap-y-3 gap-x-3 md:gap-x-5">
+      <div className={`grid ${blogData && blogData.length > 0 ? 'grid-cols-[100px_100px_1fr]' : 'grid-cols-1'} w-full gap-y-6 min-h-full`}>
 
         {blogData && blogData.length > 0 ? blogData.map(({ created_at, number, title }) => {
           const date = new Date(created_at);
@@ -41,7 +41,7 @@ export default function SaharaList({ blogData }: SaharaListProps) {
               </Link>
             </React.Fragment>
           );
-        }): <p className="text-neutral-500 py-10">No issues found in your repository.</p>}
+        }): <p className="text-neutral-500 py-10 text-center">No issues found in your repository.</p>}
       </div>
     </>
   );
