@@ -20,7 +20,7 @@ export default function Navbar() {
 
   return (
     <header className="border-b border-b-[#DADADA] py-4">
-      <nav className="flex py-3 justify-between items-center w-full mx-auto">
+      <nav className="flex py-3 justify-between items-center w-full max-w-[1400px] mx-auto p-3 md:p-0">
         <Bloggen />
 
         <div className="flex gap-2 items-center">
@@ -28,7 +28,7 @@ export default function Navbar() {
             href="https://x.com/yash_devop"
             target="_blank"
             rel="noopener noreferrer"
-            className="flex gap-1 items-center"
+            className="gap-1 items-center hidden lg:flex"
           >
             <Button variant="link" className="p-0">
               Twitter
@@ -45,7 +45,7 @@ export default function Navbar() {
           ) : (
             <Link href="/signin">
               <Button className="font-sans border border-[#2b2b2b] bg-black hover:bg-black text-white hover:bg-gradient-to-t transition-all hover:from-black hover:to-[#2b2b2b] focus:bg-gradient-to-t focus:from-gray-700 focus:to-gray-900 animate-out fade-out">
-                Sign in to your account
+                <p className="flex">Sign in <span className="hidden md:block">to your account</span></p>
               </Button>
             </Link>
           )}
