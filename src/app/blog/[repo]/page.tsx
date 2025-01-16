@@ -22,7 +22,6 @@ export default async function UserBlog({
 }) {
   const repoId = (await params).repo;
   const theme = await getTheme()
-  console.log("query: ", theme);
   const repoName = decodeRepoName(repoId)
   const blog = await prisma.blog.findFirst({
     where: {
@@ -35,14 +34,12 @@ export default async function UserBlog({
     notFound();
   }
 
-  console.log("BLOG OWNER: ", blog?.owner);
   const owner = await prisma.owner.findFirst({
     where: {
       owner: blog?.owner,
     },
   });
 
-  console.log("Owner :", owner);
 
   if (!owner) {
     // error.
@@ -62,7 +59,6 @@ export default async function UserBlog({
       repo: blog.repoName || repoId
     })
   
-    console.log('issues',issues);
     const ListComponent = theme === "neutral" ? NeutralList : SaharaList;
   
     return (
@@ -71,7 +67,6 @@ export default async function UserBlog({
       </>
     );
   } catch (error) {
-    console.log('error',error);
     notFound()
   }
 
