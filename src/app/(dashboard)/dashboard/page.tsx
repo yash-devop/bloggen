@@ -26,11 +26,11 @@ export default async function DashboardPage() {
                 <Plus size={16} />
                 <span className="tracking-tight">Create blog</span>
               </Link>
-              {blogs.map((blog) => (
+              {blogs.length > 0 ? blogs.map((blog) => (
                 <>
                     <BlogCard {...blog} key={blog.id}/>
                 </>
-              ))}
+              )) : null}
             </div>
           </div>
         </div>
@@ -71,7 +71,7 @@ const BlogCard = ({
         </span>
         <div className="overflow-x-hidden flex justify-between">
           <p className="group-hover:-translate-x-28 transition-all text-xs tracking-[-0.39px] text-gray-600">
-            Created at {createdAt.toLocaleDateString()}
+            Created at {createdAt ? createdAt.toLocaleDateString() : "---"}
           </p>
           <div className="flex translate-x-20 group-hover:translate-x-0 transition-all items-center gap-2 text-gray-600">
             <p className="text-xs font-[400] tracking-[-0.39px] ">Go to blog</p>
