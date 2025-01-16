@@ -35,9 +35,23 @@ export async function middleware(request: NextRequest) {
       return NextResponse.redirect(new URL("/install", request.url));
     }
   }
-  // if (request.nextUrl.pathname.startsWith("/install")) {
-  //   console.log('Installa mid work');
-  // }
+
+  if(request.nextUrl.pathname.startsWith("/install")){
+    const session = await auth();
+    if (!session) {
+      return NextResponse.redirect(new URL("/signin", request.url));
+    }
+    const response = await fetch(GET_APP_INSTALLATION, {
+      method: "GET",
+      headers: {
+        Cookie: request.headers.get("cookie") || "",
+        "Content-Type": "application/json",
+      },
+    });
+    if (response.ok) {
+      return NextResponse.redirect(new URL("/dashboard", request.url));
+    }
+  }
   const hostname = request.headers
     .get("host")!
     .replace(".localhost:3000", `.${process.env.NEXT_PUBLIC_ROOT_DOMAIN}`);
