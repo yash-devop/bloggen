@@ -2,13 +2,9 @@ import { notFound } from "next/navigation";
 import githubClient from "@/app/lib/octokit";
 import { decodeRepoName } from "@/app/utils/modifyRepo";
 import prisma from "@/app/lib/prisma";
-
-import { PrismLight as SyntaxHighlighter } from "react-syntax-highlighter";
-
 import MarkdownComponent from "./MarkdownComponent";
 import { getTheme } from "@/app/utils/getTheme";
 import { Button } from "@/app/components/ui/button";
-import Link from "next/link";
 export default async function IssuePage({
   params,
 }: {
@@ -53,12 +49,6 @@ export default async function IssuePage({
   );
 
   try {
-    const issues = await octokit.rest.issues.get({
-      owner: owner.owner,
-      repo: blog.repoName || repoId,
-      issue_number: Number(issueId),
-    });
-
     const comments = await octokit.rest.issues.listComments({
       owner: owner.owner,
       repo: blog.repoName || repoId,
@@ -73,7 +63,7 @@ export default async function IssuePage({
         <div className="flex justify-between flex-wrap gap-4 pb-16">
           <h1 className={`text-3xl ${
           theme === "sahara" ? "text-black" : "text-white"
-        }`}>testing-react-redux-toolkit</h1>
+        }`}>{repoName}</h1>
           <div className="">
             <Button className={"text-base"}>
                 <a target="_blank" href={`https://github.com/${owner.owner}/${repoName}/issues/${issueId}`}>

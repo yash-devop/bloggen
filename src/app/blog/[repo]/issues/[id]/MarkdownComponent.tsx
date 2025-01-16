@@ -22,7 +22,7 @@ const MarkdownComponent: FC<MarkdownProps> = ({ markdown , theme}) => {
       }
       components={{
 
-        code({ node, inline, className, children, ...props }: any) {
+        code({ children}) {
           return (
             <SyntaxHighlighter
               style={atomDark}
