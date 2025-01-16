@@ -4,7 +4,7 @@ import React from "react";
 
 type SaharaListProps = {
   blogData: {
-    id: number;
+    number: number;
     created_at: string;
     updated_at: string;
     title: string;
@@ -19,16 +19,16 @@ export default function SaharaList({ blogData }: SaharaListProps) {
         <p className="text-3xl md:text-4xl py-10 text-[#b4985e]">Blog</p>
       <div className="grid grid-cols-[120px_1fr] w-full md:gap-y-3 gap-x-3 md:gap-x-5">
 
-        {blogData.map(({ created_at, id, title }) => {
+        {blogData && blogData.length > 0 ? blogData.map(({ created_at, number, title }) => {
           const date = new Date(created_at);
           const formattedDate = format(date,"dd - MMM - yyyy")
           return (
-            <React.Fragment key={id}>
+            <React.Fragment key={number}>
               <div className="flex flex-col gap-2">
                 <p className="text-[#ad9567] text-base">{formattedDate}</p>
               </div>
               <Link
-                href={`/issues/${id}`}
+                href={`/issues/${number}`}
                 className="truncate flex flex-col rounded-lg transition-all duration-300 focus:outline-none"
               >
                 <div>
@@ -41,7 +41,7 @@ export default function SaharaList({ blogData }: SaharaListProps) {
               </Link>
             </React.Fragment>
           );
-        })}
+        }): <p className="text-neutral-500 py-10">No issues found in your repository.</p>}
       </div>
     </>
   );
